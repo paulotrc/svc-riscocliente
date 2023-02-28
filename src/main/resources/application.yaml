@@ -1,0 +1,101 @@
+spring:
+  application:
+    name: svc-riscocliente
+  data:
+    mongodb:
+      uri: mongodb://cli_adm:cli_adm@127.0.0.1:27017/
+      database: db_cli
+      authentication-database: cli_adm
+      username: cli_adm
+      password: cli_adm
+
+server:
+  port: 8097
+  servlet:
+    context-path: /svc-riscocliente
+
+management:
+  server:
+    port: 9097
+  context-path: /actuator
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+
+# custom path for swagger-ui
+springdoc:
+  swagger-ui:
+    path: /swaggerui.html
+    operationsSorter: alpha
+    tagsSorter: alpha
+  # custom path for api docs
+  api-docs:
+    path: /api-docs
+
+logging:
+  pattern:
+    default: '{"Timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}", "LogType": "%-5p", "AppName": "${spring.application.name}", "TraceId": "%X{traceId:--}", "SpanId": "%X{spanId:--}", "TraceFlags": "%X{trace_flags:--}", "PID": "${PID}", "Thread": "%thread", "Message": %m}%n'
+    console: ${logging.pattern.default}
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      processServiceApiCep:
+        slidingWindowSize: 50
+        minimumNumberOfCalls: 10
+        permittedNumberOfCallsInHalfOpenState: 5
+        #failureRateThreshold: 50
+        waitDurationInOpenState: 20s
+      processServiceMongo:
+        slidingWindowSize: 50
+        minimumNumberOfCalls: 10
+        permittedNumberOfCallsInHalfOpenState: 5
+        #failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+      processService:
+        # tamanho da janela deslizante que é usada para registrar o resultado das chamadas quando o CircuitBreaker é fechado
+        slidingWindowSize: 50
+        # numero de chamadas permitidas quando estado meio aberto
+        permittedNumberOfCallsInHalfOpenState: 5
+        # tamanho da janela deslizante que é usada para registrar o resultado das chamadas quando o CircuitBreaker é fechado
+        #        slidingWindowType: TIME_BASED
+        # número mínimo de chamadas que são necessárias (por período de janela deslizante) antes que o CircuitBreaker possa calcular a taxa de erro ou a taxa de chamada lenta.
+        minimumNumberOfCalls: 10
+        # tempo que o CircuitBreaker deve esperar antes de fazer a transição de aberto para semiaberto
+        waitDurationInOpenState: 20s
+        # limite da taxa de falha em porcentagem. Quando a taxa de falha é igual ou maior que o limite, o CircuitBreaker faz a transição para abrir e inicia chamadas de curto-circuito
+  #        failureRateThreshold: 50
+  retry:
+    instances:
+      default:
+        max-attempts: 3
+        wait-duration: 1s
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 20000
+        readTimeout: 10000
+      mongo:
+        connectTimeout: 40000
+        readTimeout: 10000
+      apicep:
+        connectTimeout: 10000
+        readTimeout: 10000
+
+cep:
+  api:
+    url:  https://cdn.apicep.com/file/apicep/
