@@ -18,33 +18,19 @@ import java.util.UUID;
 public class RiscoClienteRequest {
 
     private UUID id = UUID.randomUUID();
-
     @NotBlank(message = "CPF é obrigatório")
     private String cpf; //Documento de identificação do dono do imóvel
-
-    @NotBlank(message = "Cep é obrigatório")
-    @Pattern(regexp = "^\\d{1,5}-\\d{1,3}$", message = "Cep inválido, utilize o seguinte formato: 99999-99.")
-    private String cep;
-    private String estado;
-    private String cidade;
-    private String bairro;
-    private String endereco;
-    @NotBlank(message = "Número é obrigatório")
-    private String numero;
-    @NotBlank(message = "Complemento é obrigatório")
-    private String complemento;
-    private String referencia;
-    @PastOrPresent(message = "DataCompra é obrigatório e não pode ser compra futura.")
-    private LocalDate dataCompra;
-    private LocalDate dataFimContrato;
-    private LocalDate dataQuitacao;
-    @Positive(message = "ParcelasTotais é obrigatório e deve ser maior que zero.")
-    private Integer parcelasTotais;
-    @PositiveOrZero(message = "ParcelasPagas é obrigatório, caso ainda não tenha nenhuma parcela paga, indicar como 0 (zero).")
-    private Integer parcelasPagas;
-    @TipoRestricaoRiscoClienteValidator(regexp = "DIVIDA|SITUACAO_CADASTRAL|CPF_CANCELADO|CPF_PENDENTE|CPF_NULO")
-    private TipoRestricaoRiscoCliente restricaoCadastrorisco;
-    @TipoRiscoClienteValidator(regexp = "CASA|APARTAMENTO|FLAT|KITNET|GALPAO")
+    @PastOrPresent(message = "DataInclusao é obrigatório e não pode ser inclusão futura.")
+    private LocalDate dataInclusao;
+    @Positive(message = "Validade do risco em meses é obrigatório e deve ser maior que zero.")
+    private Integer validadeEmMeses;
+    @TipoRiscoClienteValidator(regexp = "ALTO|MEDIO|BAIXO")
     private TipoRiscoCliente tipoRiscoCliente;
+    @TipoRestricaoRiscoClienteValidator(regexp = "SPC|SERASA|BACEN|INFO_IMOVEL_IRREGULAR|INFO_AUTOMOVEL_IRREGULAR|SUSPEITA_FRAUDE")
+    private TipoRestricaoRiscoCliente restricaoCadastrorisco;
+    @NotBlank(message = "Informação de Risco Ativo é obrigatório")
+    private Boolean riscoAtivo;
+
+
 }
 

@@ -28,7 +28,7 @@ import java.util.List;
 @RequestMapping(value = "/api/v1")
 public interface RiscoClienteResourceI {
 
-    @Operation(summary = "Obter as infromações de Risco Cliente pelo seu cpf")
+    @Operation(summary = "Obter as informações de Risco Cliente pelo seu cpf")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Dados de Risco encontrado",
                     content = {@Content(mediaType = MediaType.APPLICATION_JSON_VALUE,

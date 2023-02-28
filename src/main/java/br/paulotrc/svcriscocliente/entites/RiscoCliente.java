@@ -22,20 +22,10 @@ public class RiscoCliente {
     @Id
     private UUID id = UUID.randomUUID();
     private String cpf; //Documento de identificação do dono do imóvel
-    private String cep;
-    private String estado;
-    private String cidade;
-    private String bairro;
-    private String endereco;
-    private String numero;
-    private String complemento;
-    private String referencia;
-    private LocalDate dataCompra;
-    private LocalDate dataFimContrato;
-    private LocalDate dataQuitacao;
-    private Integer parcelasTotais;
-    private Integer parcelasPagas;
-    private TipoRestricaoRiscoCliente restricaoCadastrorisco;
+    private LocalDate dataInclusao;
+    private Integer validadeEmMeses;
     private TipoRiscoCliente tipoRiscoCliente;
+    private TipoRestricaoRiscoCliente restricaoCadastrorisco;
+    private Boolean riscoAtivo;
 }
 
