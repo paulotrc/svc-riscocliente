@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -18,7 +19,8 @@ public class RiscoClienteDataSource implements RiscoClienteRepository {
     private MongoRiscoClienteRepository mongoRiscoClienteRepository;
 
     public RiscoCliente save(RiscoCliente riscoCliente){
-            return this.mongoRiscoClienteRepository.save(riscoCliente);
+        riscoCliente.setId(UUID.randomUUID());
+        return this.mongoRiscoClienteRepository.save(riscoCliente);
     }
 
     @Override

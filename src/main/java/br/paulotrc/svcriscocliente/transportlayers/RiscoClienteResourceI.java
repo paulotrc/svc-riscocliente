@@ -71,7 +71,7 @@ public interface RiscoClienteResourceI {
     })
     @CircuitBreaker(name = "processServiceMongo", fallbackMethod = "fallback")
     @Retry(name = "default")
-    @PostMapping (value = "/riscocliente", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping (value = "/riscocliente/", produces = {MediaType.APPLICATION_JSON_VALUE})
     ResponseEntity<RiscoClienteResponse> post(@Valid @RequestBody RiscoClienteRequest riscoClienteRequest);
 
 }

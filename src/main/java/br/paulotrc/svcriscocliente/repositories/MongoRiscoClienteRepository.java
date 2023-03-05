@@ -11,7 +11,4 @@ public interface MongoRiscoClienteRepository extends MongoRepository<RiscoClient
 
     @Query("{cpf: { $regex: ?0 } })")
     List<RiscoCliente> consultarPorCpf(String cpf);
-
-    @Query("{cep: { $regex: ?0 } })")
-    List<RiscoCliente> consultarPorCep(String cep);
 }

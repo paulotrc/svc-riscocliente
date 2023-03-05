@@ -20,7 +20,8 @@ public class RiscoClienteResponse {
     private LocalDate dataInclusao;
     private Integer validadeEmMeses;
     private TipoRiscoCliente tipoRiscoCliente;
-    private List<TipoRestricaoRiscoCliente> restricaoCadastrorisco;
+    private List<TipoRestricaoRiscoCliente> restricoesRiscoCliente;
     private Boolean riscoAtivo;
+    private Boolean podeTomarEmprestimo;
 }
 

@@ -3,7 +3,6 @@ package br.paulotrc.svcriscocliente.transportlayers.dto.request;
 import br.paulotrc.svcriscocliente.entites.enumerados.TipoRiscoCliente;
 import br.paulotrc.svcriscocliente.entites.enumerados.TipoRestricaoRiscoCliente;
 import br.paulotrc.svcriscocliente.entites.validators.TipoRiscoClienteValidator;
-import br.paulotrc.svcriscocliente.entites.validators.TipoRestricaoRiscoClienteValidator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,10 +26,15 @@ public class RiscoClienteRequest {
     private Integer validadeEmMeses;
     @TipoRiscoClienteValidator(regexp = "ALTO|MEDIO|BAIXO")
     private TipoRiscoCliente tipoRiscoCliente;
-    @TipoRestricaoRiscoClienteValidator(regexp = "SPC|SERASA|BACEN|INFO_IMOVEL_IRREGULAR|INFO_AUTOMOVEL_IRREGULAR|SUSPEITA_FRAUDE")
-    private List<TipoRestricaoRiscoCliente> restricaoCadastrorisco;
-    @NotBlank(message = "Informação de Risco Ativo é obrigatório")
+    private List<TipoRestricaoRiscoCliente> restricoesRiscoCliente;
+    @NotNull
     private Boolean riscoAtivo;
+    @NotNull
+    private Boolean podeTomarEmprestimo;
+    @NotNull
+    private String idProcessInstanceExecution;
+    @NotNull
+    private String bussinessKeyExecution;
 
 }
 
