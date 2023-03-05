@@ -43,35 +43,10 @@ public class RiscoClienteResource implements RiscoClienteResourceI {
     }
 
     @Override
-    public ResponseEntity<List<RiscoClienteResponse>> getPorCep(
-            @Parameter(name = "cep", description = "Cep do imóvel", required = true)
-            @PathVariable("cep") String cep
-    ) {
-        List<RiscoCliente> riscoClientes = null;
-        try {
-            riscoClientes = riscoClienteUseCase.consultarPorCep(cep);
-        }catch (ResourceException e){
-            ExceptionUtil.throwException(e);
-        }
-        return ResponseEntity.ok(RiscoClienteMapper.INSTANCE.mapListResponse(riscoClientes));
-    }
-
-    @Override
-    public ResponseEntity<List<RiscoClienteResponse>> getAll() {
-        List<RiscoCliente> riscoClientes = null;
-        try {
-            riscoClientes = riscoClienteUseCase.consultaTodos();
-        }catch (ResourceException e){
-            ExceptionUtil.throwException(e);
-        }
-        return ResponseEntity.ok(RiscoClienteMapper.INSTANCE.mapListResponse(riscoClientes));
-    }
-
-    @Override
     public ResponseEntity<RiscoClienteResponse> post(@Valid @RequestBody RiscoClienteRequest riscoClienteRequest) {
         RiscoCliente riscoCliente = null;
         try {
-            riscoCliente = riscoClienteUseCase.gravarCadastrorisco(RiscoClienteMapper.INSTANCE.map(riscoClienteRequest));
+            riscoCliente = riscoClienteUseCase.gravarRiscoCliente(RiscoClienteMapper.INSTANCE.map(riscoClienteRequest));
         }catch (ResourceException e){
             ExceptionUtil.throwException(e);
         }

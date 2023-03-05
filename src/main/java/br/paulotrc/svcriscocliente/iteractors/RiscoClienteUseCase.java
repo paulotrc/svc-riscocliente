@@ -15,25 +15,12 @@ public class RiscoClienteUseCase {
         this.riscoClienteRepository = riscoClienteRepository;
     }
 
-    public RiscoCliente gravarCadastrorisco(RiscoCliente riscoCliente) {
+    public RiscoCliente gravarRiscoCliente(RiscoCliente riscoCliente) {
         return riscoClienteRepository.save(riscoCliente);
-    }
-
-    public List<RiscoCliente> consultaTodos() {
-        return riscoClienteRepository.findAll();
     }
 
     public List<RiscoCliente> consultarPorCpf(String cpf) {
         return riscoClienteRepository.consultarPorCpf(cpf);
-    }
-
-    public List<RiscoCliente> consultarPorCep(String cep) {
-        return riscoClienteRepository.consultarPorCep(cep);
-    }
-
-    public Boolean cepExiste(String cep){
-
-        return false;
     }
 
 }

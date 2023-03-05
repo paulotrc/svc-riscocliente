@@ -10,6 +10,7 @@ import lombok.Getter;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -27,10 +28,9 @@ public class RiscoClienteRequest {
     @TipoRiscoClienteValidator(regexp = "ALTO|MEDIO|BAIXO")
     private TipoRiscoCliente tipoRiscoCliente;
     @TipoRestricaoRiscoClienteValidator(regexp = "SPC|SERASA|BACEN|INFO_IMOVEL_IRREGULAR|INFO_AUTOMOVEL_IRREGULAR|SUSPEITA_FRAUDE")
-    private TipoRestricaoRiscoCliente restricaoCadastrorisco;
+    private List<TipoRestricaoRiscoCliente> restricaoCadastrorisco;
     @NotBlank(message = "Informação de Risco Ativo é obrigatório")
     private Boolean riscoAtivo;
-
 
 }
 

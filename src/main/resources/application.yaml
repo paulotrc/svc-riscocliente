@@ -92,10 +92,3 @@ feign:
       mongo:
         connectTimeout: 40000
         readTimeout: 10000
-      apicep:
-        connectTimeout: 10000
-        readTimeout: 10000
-
-cep:
-  api:
-    url:  https://cdn.apicep.com/file/apicep/

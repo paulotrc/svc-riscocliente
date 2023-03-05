@@ -10,6 +10,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -20,12 +21,12 @@ import java.util.UUID;
 public class RiscoCliente {
 
     @Id
-    private UUID id = UUID.randomUUID();
+    private UUID id;
     private String cpf; //Documento de identificação do dono do imóvel
     private LocalDate dataInclusao;
     private Integer validadeEmMeses;
     private TipoRiscoCliente tipoRiscoCliente;
-    private TipoRestricaoRiscoCliente restricaoCadastrorisco;
+    private List<TipoRestricaoRiscoCliente> restricaoCadastrorisco;
     private Boolean riscoAtivo;
 }
 

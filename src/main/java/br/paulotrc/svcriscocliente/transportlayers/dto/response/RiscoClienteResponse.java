@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -19,7 +20,7 @@ public class RiscoClienteResponse {
     private LocalDate dataInclusao;
     private Integer validadeEmMeses;
     private TipoRiscoCliente tipoRiscoCliente;
-    private TipoRestricaoRiscoCliente restricaoCadastrorisco;
+    private List<TipoRestricaoRiscoCliente> restricaoCadastrorisco;
     private Boolean riscoAtivo;
 }
 
